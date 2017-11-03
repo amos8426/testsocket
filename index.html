@@ -1,0 +1,19 @@
+<html>
+<body>
+      <button id="button">Send!</button>
+      <h2 id="alert"> waiting...</h2>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.min.js"></script>
+      <script>
+        var socket = io("http://localhost:3000");
+        socket.on('connect', function() {
+          document.getElementById("button").addEventListener("click", function () {
+              socket.emit("clicked");
+          });
+        });
+        socket.on('clicked', function() {
+          console.log('clicked');
+          document.getElementById("alert").innerHTML = "button clicked";
+        });
+      </script>
+    </body>
+</html>
